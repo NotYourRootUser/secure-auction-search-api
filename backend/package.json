@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test:auction": "node src/scripts/test-auction.js"
   },
   "keywords": [],
   "author": "",
