@@ -21,8 +21,8 @@ npm run seed
 npm run clear
 ```
 
-- `npm run seed` — clears the auction collection and inserts sample auction data
-- `npm run clear` — removes all auction data
+- `npm run seed` — resets the auction collection and inserts sample auction data
+- `npm run clear` — removes all auction documents from the collection
 
 ## More Details
 Phase 1 currently includes:
