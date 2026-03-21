@@ -12,7 +12,12 @@ npm install
 Create a `.env` file and add your MongoDB connection string:
 
 ```env
-MONGODB_URI=your_connection_string_here
+MONGO_URI=your_connection_string_here
+```
+
+## Running the Server
+```bash
+npm run dev
 ```
 
 ## CLI Commands
@@ -21,8 +26,23 @@ npm run seed
 npm run clear
 ```
 
-- `npm run seed` — resets the auction collection and inserts sample auction data
-- `npm run clear` — removes all auction documents from the collection
+- `npm run seed` resets the auction collection and inserts sample auction data
+- `npm run clear` removes all auction documents from the collection
+
+## Search API
+Start the backend server, then use the search endpoint below:
+
+```http
+GET /api/auctions/search?q=toyota
+```
+
+Example in browser or Postman:
+
+```text
+http://localhost:5000/api/auctions/search?q=toyota
+```
+
+The search endpoint checks both the auction title and description fields and returns matching results from MongoDB.
 
 ## More Details
 Phase 1 currently includes:
@@ -30,3 +50,4 @@ Phase 1 currently includes:
 - Auction model
 - seed script
 - clear script
+- auction search API
