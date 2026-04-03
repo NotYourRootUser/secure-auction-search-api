@@ -1,4 +1,4 @@
-# Mission 5 Phase 1 Readme
+# Mission 5 Phase 1 Auction Backend
 
 ## Project Overview
 This project is the Phase 1 backend setup for Mission 5.  
