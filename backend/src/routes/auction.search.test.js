@@ -45,7 +45,9 @@ describe("GET /api/auctions/search", () => {
   test("valid search with no matches returns empty array", async () => {
     mockLimit.mockResolvedValue([]);
 
-    const response = await request(app).get("/api/auctions/search?q=nonexistent");
+    const response = await request(app).get(
+      "/api/auctions/search?q=nonexistent",
+    );
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ results: [] });
@@ -87,7 +89,9 @@ describe("GET /api/auctions/search", () => {
       { title: "MacBook Air", description: "Laptop" },
     ]);
 
-    const response = await request(app).get("/api/auctions/search?q=   macbook   ");
+    const response = await request(app).get(
+      "/api/auctions/search?q=   macbook   ",
+    );
 
     expect(response.status).toBe(200);
 
@@ -97,9 +101,7 @@ describe("GET /api/auctions/search", () => {
   });
 
   test("database failure returns 500", async () => {
-    mockSort.mockImplementationOnce(() => {
-      throw new Error("DB failed");
-    });
+    mockLimit.mockRejectedValueOnce(new Error("DB failed"));
 
     const response = await request(app).get("/api/auctions/search?q=ps5");
 
