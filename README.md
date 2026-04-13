@@ -1,53 +1,75 @@
-# Mission 5 Phase 1 Auction Backend
+# Secure Auction Search API
 
 ## Project Overview
-This project is the Phase 1 backend setup for Mission 5.  
-It uses Node.js, Express, MongoDB, and Mongoose to manage auction data for local development.
+This project is a backend auction search API built with Node.js, Express, MongoDB, and Mongoose for local development and API testing.
+
+It focuses on:
+- clean Express app structure
+- MongoDB integration with Mongoose
+- schema validation for auction data
+- defensive search input handling
+- local seed and clear scripts for data management
 
 ## Installation
-```bash
+~~~bash
 npm install
-```
+~~~
 
 Create a `.env` file and add your MongoDB connection string:
 
-```env
+~~~env
 MONGO_URI=your_connection_string_here
-```
+~~~
 
 ## Running the Server
-```bash
+~~~bash
 npm run dev
-```
+~~~
 
 ## CLI Commands
-```bash
+~~~bash
 npm run seed
 npm run clear
-```
+~~~
 
-- `npm run seed` resets the auction collection and inserts sample auction data
+- `npm run seed` clears the auction collection and inserts sample auction data
 - `npm run clear` removes all auction documents from the collection
 
 ## Search API
 Start the backend server, then use the search endpoint below:
 
-```http
+~~~http
 GET /api/auctions/search?q=toyota
-```
+~~~
 
 Example in browser or Postman:
 
-```text
+~~~text
 http://localhost:5000/api/auctions/search?q=toyota
-```
+~~~
 
-The search endpoint checks both the auction title and description fields and returns matching results from MongoDB.
+The search endpoint:
+- trims surrounding whitespace from input
+- rejects empty queries
+- escapes regex characters before building the search pattern
+- searches both `title` and `description`
+- sorts newest results first
+- limits responses to 20 results
 
-## More Details
-Phase 1 currently includes:
+## Current Features
 - MongoDB connection setup
-- Auction model
-- seed script
-- clear script
+- auction schema with validation
 - auction search API
+- seed script for sample data
+- clear script for resetting the collection
+- defensive handling for search input
+
+## Testing
+Tests cover the search contract for:
+- valid search requests with matching results
+- valid search requests with no matches
+- missing query handling
+- blank query handling
+- regex-like input handling
+- trimmed whitespace handling
+- database failure response handling
