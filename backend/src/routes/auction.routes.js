@@ -18,14 +18,13 @@ router.get("/search", async (req, res) => {
       });
     }
 
-    const safeQuery = escapeRegex(query);
+    const regex = new RegExp(escapeRegex(query), "i");
 
     const results = await Auction.find({
-      $or: [
-        { title: { $regex: safeQuery, $options: "i" } },
-        { description: { $regex: safeQuery, $options: "i" } },
-      ],
-    }).limit(20);
+      $or: [{ title: regex }, { description: regex }],
+    })
+      .sort({ createdAt: -1 })
+      .limit(20);
 
     return res.status(200).json({ results });
   } catch (error) {
