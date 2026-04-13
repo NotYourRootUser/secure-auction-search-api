@@ -8,7 +8,8 @@
     "start": "node src/server.js",
     "test:auction": "node src/scripts/test-auction.js",
     "seed": "node src/scripts/seed.js",
-    "clear": "node src/scripts/clear-auctions.js"
+    "clear": "node src/scripts/clear-auctions.js",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand"
   },
   "keywords": [],
   "author": "",
